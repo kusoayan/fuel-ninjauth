@@ -63,6 +63,6 @@ class Adapter_SimpleAuth extends Adapter
 	public function can_auto_login(array $user)
 	{
 		// To automatically register with simpleauth you need an username or email and password
-		return (isset($user['username']) || isset($user['email']));
+		return (isset($user['username']) and isset($user['email']));
 	}
 }
