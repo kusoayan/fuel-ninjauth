@@ -84,7 +84,7 @@ abstract class Strategy
 	public function login_or_register()
 	{
 		$token = $this->callback();
-		
+
 		switch ($this->name)
 		{
 		 	case 'oauth':
@@ -138,7 +138,7 @@ abstract class Strategy
 			else
 			{
 				$auth = Model_Authentication::find_one_by_user_id($user_id);
-				throw new Exception(sprintf('This user is already linked to "%s".', $auth->provider));
+				throw new AuthException(sprintf('This user is already linked to "%s".', $auth->provider));
 			}
 		}
 		
@@ -152,7 +152,7 @@ abstract class Strategy
 			    return 'logged_in';
 			}
 
-			throw new Exception('Force login failed');
+			throw new AuthException('This user could not be logged in.');
 		}
 		
 		// Not an existing user of any type, so we need to create a user somehow
